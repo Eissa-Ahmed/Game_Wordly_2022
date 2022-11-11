@@ -2,7 +2,9 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_vibrate/flutter_vibrate.dart';
 import 'package:game_wordly_cubit/component/colorGrid.dart';
+import 'package:game_wordly_cubit/component/listOfKeys.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../component/colorKeyBoard.dart';
@@ -29,13 +31,24 @@ class GameCubit extends Cubit<GameState> {
     "",
   ];
   List<String> wordGuessGame = [
-    "EISSA",
-    "AHMED",
-    "ESRAA",
-    "MONAA",
-    "FATHY",
-    "HELMY",
-    "KASPR",
+    "BRING",
+    "CHASE",
+    "LEAVE",
+    "LIMIT",
+    "PEACE",
+    "PANEL",
+    "MAYOR",
+    "MOVIE",
+    "MOVIE",
+    "PAINT",
+    "NEEDS",
+    "RADIO",
+    "ROUND",
+    "SCALE",
+    "QUICK",
+    "SHARP",
+    "TAKEN",
+    "TASTE",
   ];
 
   //Fun
@@ -43,8 +56,24 @@ class GameCubit extends Cubit<GameState> {
   randomWord() {
     int random = Random().nextInt(wordGuessGame.length);
     gameGuess = wordGuessGame[random];
+    changeColorRow();
     print(gameGuess);
+
     emit(ChangeWordGame());
+  }
+
+  changeColorRow() {
+    for (var i = 0; i < colorsGrid[rowCell].length; i++) {
+      colorsGrid[rowCell][i] = Colors.grey.shade600;
+    }
+    if (rowCell > 0) {
+      for (var i = 0; i < colorsGrid[rowCell - 1].length; i++) {
+        if (!gameGuess.contains(wordGuessUser[rowCell - 1][i])) {
+          colorsGrid[rowCell - 1][i] = Colors.grey.shade800;
+        }
+      }
+    }
+    emit(ChangeColorRow());
   }
 
   putWord(String e) {
@@ -59,11 +88,13 @@ class GameCubit extends Cubit<GameState> {
       if (wordGuessUser[rowCell].length == 5) {
         changeColorCell();
         changeColorKeyBoard();
+        changeFlipCard();
         rowCell++;
         for (var i = 0; i < 4; i++) {
           colorsGrid[rowCell][i] = Colors.grey.shade800;
         }
       }
+      changeColorRow();
       checkWinner();
       emit(EnterPutWord());
     }
@@ -141,6 +172,12 @@ class GameCubit extends Cubit<GameState> {
     }
   }
 
+  changeFlipCard() {
+    for (var i = 0; i < 5; i++) {
+      mainList[rowCell][i].toggleCard();
+    }
+  }
+
   dailogWinner(BuildContext context, String image, String text) {
     showDialog(
         barrierColor: Colors.grey.shade800.withOpacity(0.7),
@@ -195,5 +232,6 @@ class GameCubit extends Cubit<GameState> {
             ),
           );
         });
+    Vibrate.vibrate();
   }
 }

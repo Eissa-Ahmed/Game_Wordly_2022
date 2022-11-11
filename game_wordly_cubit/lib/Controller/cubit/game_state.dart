@@ -20,3 +20,5 @@ class FinishGame extends GameState {}
 class FinishGameFail extends GameState {}
 
 class ChangeColorKeyBoard extends GameState {}
+
+class ChangeColorRow extends GameState {}

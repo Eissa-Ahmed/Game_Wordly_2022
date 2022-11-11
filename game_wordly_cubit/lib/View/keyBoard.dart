@@ -20,9 +20,12 @@ class KeyBoard extends StatelessWidget {
               children: cubit.row1
                   .map(
                     (e) => InkWell(
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      splashColor: Colors.transparent,
                       onTap: () {
                         cubit.putWord(e);
-                        // cubit.changeColorKeyBoard(cubit.row1, e, 0);
                       },
                       child: Container(
                         margin: EdgeInsets.symmetric(
@@ -52,9 +55,12 @@ class KeyBoard extends StatelessWidget {
               children: cubit.row2
                   .map(
                     (e) => InkWell(
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      splashColor: Colors.transparent,
                       onTap: () {
                         cubit.putWord(e);
-                        // cubit.changeColorKeyBoard(cubit.row2, e, 1);
                       },
                       child: Container(
                         margin: EdgeInsets.symmetric(
@@ -84,6 +90,10 @@ class KeyBoard extends StatelessWidget {
               children: cubit.row3
                   .map(
                     (e) => InkWell(
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      splashColor: Colors.transparent,
                       onTap: () {
                         if (e == "ENTER") {
                           cubit.enter();
@@ -91,7 +101,6 @@ class KeyBoard extends StatelessWidget {
                           cubit.removeLetter();
                         } else {
                           cubit.putWord(e);
-                          // cubit.changeColorKeyBoard(cubit.row3, e, 2);
                         }
                       },
                       child: Container(

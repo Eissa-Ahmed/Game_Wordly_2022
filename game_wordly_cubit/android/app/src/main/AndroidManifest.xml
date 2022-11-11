@@ -2,7 +2,7 @@
     package="com.example.game_wordly_cubit">
    <uses-permission android:name="android.permission.VIBRATE"/>
    <application
-        android:label="game_wordly_cubit"
+        android:label="Wordle Game"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
